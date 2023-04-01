@@ -3,9 +3,10 @@
 ## <u>***Instructions:***</u>
 
 - Install the latest version of [PHP](https://www.php.net/downloads.php).
-- install xampp or wampp or any other server that supports phpmyadmin.
+- Install xampp or wampp or any other server that supports phpmyadmin.
 - Clone this repository.
-- run phpmyadmin and create a database named `papyrus` and import the `papyrus.sql` file.
+- Rename the db.php example file to db.php and edit the file with your database credentials.
+- Run phpmyadmin and create a database named `papyrus` and import the `papyrus.sql` file.
 - Open a terminal in the cloned directory.
 - Run `php -S localhost:8000` to start the server.
 - Open `localhost:8000` in your browser.

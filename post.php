@@ -4,7 +4,7 @@ require 'db.php';
 
 $email = $_SESSION['email'];
 
-$result = $mysqli->query("SELECT * FROM users WHERE email='$email'") or die($mysqli->error());
+$result = $mysqli->query("SELECT * FROM users WHERE email='$email'") or die($mysqli->error);
 
 $user =$result->fetch_assoc();
 $id = $user['id'];
