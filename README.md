@@ -1,6 +1,6 @@
 # PAPYRUS
 
-## <u>***Instructions:***</u>
+## <u>**_Instructions:_**</u>
 
 - Install the latest version of [PHP](https://www.php.net/downloads.php).
 - Install xampp or wampp or any other server that supports phpmyadmin.
@@ -12,6 +12,6 @@
 - Open `localhost:8000` in your browser.
 - Enjoy!
 
-## <u>***Features:***</u>
+## <u>**_Features:_**</u>
 
 Papyrus is a simple, lightweight, and fast static site for books, blogs, and more. It is written in PHP and uses Markdown for content. It is designed to be easy to use and easy to customize.

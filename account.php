@@ -5,11 +5,10 @@ session_start();
 
 
 // Check if user is logged in using the session variable
-if ( $_SESSION['logged_in'] != 1 ) {
-  $_SESSION['message'] = "You must log in before viewing your profile page!";
-  header("location: error.php");    
-}
-else {
+if ($_SESSION['logged_in'] != 1) {
+    $_SESSION['message'] = "You must log in before viewing your profile page!";
+    require "error.php";
+} else {
     // Makes it easier to read
     $first_name = $_SESSION['first_name'];
     $last_name = $_SESSION['last_name'];
@@ -17,10 +16,10 @@ else {
     $active = $_SESSION['active'];
 }
 //call query method of $mysqli object
-$result = $mysqli->query 
-        //SELECT queries are always return as mysqli result objects
-        ("SELECT * FROM user_book WHERE email='$email'") 
-        or die($mysqli->error); 
+$result = $mysqli->query
+    //SELECT queries are always return as mysqli result objects
+    ("SELECT * FROM user_book WHERE email='$email'")
+    or die($mysqli->error);
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,9 +37,18 @@ $result = $mysqli->query
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <style>
-html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
+    html,
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        font-family: "Open Sans", sans-serif
+    }
 </style>
-<body class="w3-theme-l4 w3-content"  style="max-width:1600px">
+
+<body class="w3-theme-l4 w3-content" style="max-width:1600px">
 
     <div class="w3-top">
         <div class="w3-bar w3-black w3-left-align w3-large">
@@ -50,10 +58,22 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
                 <button class="w3-button w3-hide-small w3-padding-large w3-hover-blue" title="Messages"><i class="fa fa-envelope"></i><span class="w3-badge w3-right w3-small w3-red">4</span></button>
                 <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px;">
                     <a href="Message.html" class="w3-small w3-bar-item w3-button w3-text-blue w3-right-align w3-hover-none w3-text-black w3-hover-text-red">Read All Messages</a>
-                    <a href="#" class="w3-bar-item w3-button w3-hover-red"><p class="w3-text-black w3-small"><b>Chowdhury Rabith Amin</b></p><p class="w3-right w3-small w3-text-black">Ki obostha programmer?</p></a>
-                    <a href="#" class="w3-bar-item w3-button w3-hover-red"><p class="w3-text-black w3-small"><b>Abrar Baruque Aurko</b></p><p class="w3-right w3-small w3-text-black">ek dine tor hoibo re shoron o hason raja</p></a>
-                    <a href="#" class="w3-bar-item w3-button w3-hover-red"><p class="w3-text-black w3-small"><b>Muktadir Rabbi Shotej</b></p><p class="w3-right w3-small w3-text-black">Raja Raja Raja, Dil mein kar aja</p></a>
-                    <a href="#" class="w3-bar-item w3-button w3-hover-red"><p class="w3-text-black w3-small"><b>Tasin Shafi Leon</b></p><p class="w3-right w3-small w3-text-black">Bhhagke, dun dun dun dun dun dun dun</p></a>
+                    <a href="#" class="w3-bar-item w3-button w3-hover-red">
+                        <p class="w3-text-black w3-small"><b>Chowdhury Rabith Amin</b></p>
+                        <p class="w3-right w3-small w3-text-black">Ki obostha programmer?</p>
+                    </a>
+                    <a href="#" class="w3-bar-item w3-button w3-hover-red">
+                        <p class="w3-text-black w3-small"><b>Abrar Baruque Aurko</b></p>
+                        <p class="w3-right w3-small w3-text-black">ek dine tor hoibo re shoron o hason raja</p>
+                    </a>
+                    <a href="#" class="w3-bar-item w3-button w3-hover-red">
+                        <p class="w3-text-black w3-small"><b>Muktadir Rabbi Shotej</b></p>
+                        <p class="w3-right w3-small w3-text-black">Raja Raja Raja, Dil mein kar aja</p>
+                    </a>
+                    <a href="#" class="w3-bar-item w3-button w3-hover-red">
+                        <p class="w3-text-black w3-small"><b>Tasin Shafi Leon</b></p>
+                        <p class="w3-right w3-small w3-text-black">Bhhagke, dun dun dun dun dun dun dun</p>
+                    </a>
                 </div>
 
             </div>
@@ -69,7 +89,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
             <div class="w3-dropdown-hover w3-hide-small w3-right">
                 <button class="w3-button w3-hide-small w3-padding-large w3-hover-blue" title="Account"><img src="img/avatar.jpg" class="w3-circle" style="height:25px;width:25px" alt="Avatar"></button>
                 <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="right: 0;width:300px">
-                    <a href="account.php" class="w3-bar-item w3-button w3-hover-red"><?php echo $first_name.' '.$last_name; ?></a>
+                    <a href="account.php" class="w3-bar-item w3-button w3-hover-red"><?php echo $first_name . ' ' . $last_name; ?></a>
                     <a href="#" class="w3-bar-item w3-button w3-hover-red">Account Settings</a>
                     <a href="logout.php" class="w3-bar-item w3-button w3-hover-red">Logout</a>
                 </div>
@@ -86,21 +106,23 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
         <a href="#" class="w3-bar-item w3-button w3-padding-large w3-right">Account Settings</a>
         <a href="logout.php" class="w3-bar-item w3-button w3-padding-large w3-right">Logout</a>
     </div>
-    
-<!-- Sidebar/menu -->
+
+    <!-- Sidebar/menu -->
     <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px; margin-top:0 " id="mySidebar"><br>
         <div class="w3-container">
             <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
                 <i class="fa fa-remove"></i>
             </a>
             <img src="img/avatar.jpg" style="width:45%;" class="w3-round"><br><br>
-            <h4><b><?php echo $first_name.' '.$last_name; ?></b></h4>
-            <a href="homepage.php"><p class="w3-text-grey w3-hover-text-red">Papyrus.com</p></a>
+            <h4><b><?php echo $first_name . ' ' . $last_name; ?></b></h4>
+            <a href="homepage.php">
+                <p class="w3-text-grey w3-hover-text-red">Papyrus.com</p>
+            </a>
         </div>
         <div class="w3-bar-block">
-            <a href="account.php" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-hover-red"><i class="fa fa-th-large fa-fw w3-margin-right"></i>PROFILE</a> 
-            <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-hover-red"><i class="fa fa-user fa-fw w3-margin-right"></i>ABOUT</a> 
-            <a href="#bir" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-hover-red"><i class="fa fa-book fa-fw w3-margin-right"></i>MY BOOKS</a> 
+            <a href="account.php" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-hover-red"><i class="fa fa-th-large fa-fw w3-margin-right"></i>PROFILE</a>
+            <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-hover-red"><i class="fa fa-user fa-fw w3-margin-right"></i>ABOUT</a>
+            <a href="#bir" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-hover-red"><i class="fa fa-book fa-fw w3-margin-right"></i>MY BOOKS</a>
             <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-hover-red"><i class="fa fa-envelope fa-fw w3-margin-right"></i>CONTACT</a>
         </div>
         <div class="w3-panel w3-large">
@@ -113,21 +135,21 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
         </div>
     </nav>
 
-<!-- Overlay effect when opening sidebar on small screens -->
+    <!-- Overlay effect when opening sidebar on small screens -->
     <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay">
-    
+
     </div>
 
-<!-- !PAGE CONTENT! -->
+    <!-- !PAGE CONTENT! -->
     <div class="w3-main" style="margin-left:300px; margin-top: 52px">
 
-  <!-- Header -->
+        <!-- Header -->
         <header>
             <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-red" onclick="w3_open()"><i class="fa fa-bars"></i></span>
             <div class="w3-container">
-                <h1><b class="w3-text-black" style=" font-size: 32px"><?php echo $first_name.' '.$last_name; ?>'s Profile</b></h1>
+                <h1><b class="w3-text-black" style=" font-size: 32px"><?php echo $first_name . ' ' . $last_name; ?>'s Profile</b></h1>
                 <div class="w3-section w3-bottombar w3-padding-16">
-                    <span class="w3-margin-right">Filter:</span> 
+                    <span class="w3-margin-right">Filter:</span>
                     <button class="w3-button w3-hover-blue w3-black">ALL</button>
                     <button class="w3-button w3 w3-hover-blue w3-red"><i class="fa fa-bars w3-margin-right"></i>Posts</button>
                     <button class="w3-button w3-red w3-hover-blue w3-hide-small"><i class="fa fa-book w3-margin-right"></i>My Books</button>
@@ -135,8 +157,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
                 </div>
             </div>
         </header>
-  
-  <!-- First Photo Grid-->
+
+        <!-- First Photo Grid-->
         <div class="w3-row-padding">
             <div class="w3-third w3-container w3-margin-bottom">
                 <img src="/w3images/mountains.jpg" alt="Norway" style="width:100%" class="w3-hover-opacity">
@@ -160,8 +182,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
                 </div>
             </div>
         </div>
-  
-  <!-- Second Photo Grid-->
+
+        <!-- Second Photo Grid-->
         <div class="w3-row-padding">
             <div class="w3-third w3-container w3-margin-bottom">
                 <img src="/w3images/p1.jpg" alt="Norway" style="width:100%" class="w3-hover-opacity">
@@ -186,7 +208,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
             </div>
         </div>
 
-  <!-- Pagination -->
+        <!-- Pagination -->
         <div class="w3-center w3-padding-32">
             <div class="w3-bar">
                 <a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>
@@ -198,7 +220,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
             </div>
         </div>
 
-  <!-- Images of Me -->
+        <!-- Images of Me -->
         <div class="w3-row-padding w3-padding-16" id="about">
             <div class="w3-col m6">
                 <img src="23172694_1829551020405906_7323851058328385770_n.jpg" alt="Me" style="width:100%; margin-top: 34px">
@@ -211,14 +233,14 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
         <div class="w3-container w3-padding-large" style="margin-bottom:32px">
             <h4><b>About Me</b></h4>
             <p>Just me, myself and I, exploring the universe of unknownment. I have a heart of love and an interest of lorem ipsum and mauris neque quam blog. I want to share my world with you. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-        </div>    
+        </div>
         <hr id="bir" style="margin-bottom: 51px">
-    
+
         <h4 style=" text-align: center">Books I Read</h4>
         <div class="w3-container w3-text-grey" id="jeans">
             <p>8 items</p>
         </div>
-<!-- Start Books I read -->
+        <!-- Start Books I read -->
         <div class="w3-row w3-grayscale">
             <div class="w3-col l3 s6">
                 <div class="w3-container">
@@ -250,7 +272,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
                     <div class="w3-display-container">
                         <img src="Header_Image2.jpg" style="width:100%">
                     </div>
-                    <p>Vintage Skinny Jeans<br>   
+                    <p>Vintage Skinny Jeans<br>
                 </div>
             </div>
 
@@ -266,9 +288,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
             </div>
         </div>
         <hr id="contact">
-    
-   
-  <!-- Contact Section -->
+
+
+        <!-- Contact Section -->
         <div class="w3-container w3-padding-large w3-black">
             <h4><b>Contact Us</b></h4>
             <div class="w3-row-padding  w3-center w3-padding-24" style="margin:0 -10px">
@@ -305,29 +327,29 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     </div>
 
 
-  <!-- Footer -->
+    <!-- Footer -->
     <footer class="w3-container w3-padding-32 w3-dark-grey">
         <div class="w3-row-padding">
             <div class="w3-third">
                 <h3>Contact Us</h3>
-                <p><a href="PapyrusHelpLine@Papyrus.com" class="w3-hover-text-red w3-text-blue" >Email Us</a></p>
+                <p><a href="PapyrusHelpLine@Papyrus.com" class="w3-hover-text-red w3-text-blue">Email Us</a></p>
                 <p>Powered by <a href="homepage.php" class="w3-hover-text-red w3-text-blue" target="_blank">Papyrus</a></p>
             </div>
-  
+
             <div class="w3-third">
                 <h3>BLOG POSTS</h3>
-                    <ul class="w3-ul w3-hoverable">
-                        <li class="w3-padding-16">
-                            <img src="/w3images/workshop.jpg" class="w3-left w3-margin-right" style="width:50px">
-                            <span class="w3-large">Lorem</span><br>
-                            <span>Sed mattis nunc</span>
-                        </li>
-                        <li class="w3-padding-16">
-                            <img src="/w3images/gondol.jpg" class="w3-left w3-margin-right" style="width:50px">
-                            <span class="w3-large">Ipsum</span><br>
-                            <span>Praes tinci sed</span>
-                        </li> 
-                    </ul>
+                <ul class="w3-ul w3-hoverable">
+                    <li class="w3-padding-16">
+                        <img src="/w3images/workshop.jpg" class="w3-left w3-margin-right" style="width:50px">
+                        <span class="w3-large">Lorem</span><br>
+                        <span>Sed mattis nunc</span>
+                    </li>
+                    <li class="w3-padding-16">
+                        <img src="/w3images/gondol.jpg" class="w3-left w3-margin-right" style="width:50px">
+                        <span class="w3-large">Ipsum</span><br>
+                        <span>Praes tinci sed</span>
+                    </li>
+                </ul>
             </div>
 
             <div class="w3-third">
@@ -343,30 +365,31 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 
         </div>
     </footer>
-  
- 
 
-<script>
-// Script to open and close sidebar
-function w3_open() {
-    document.getElementById("mySidebar").style.display = "block";
-    document.getElementById("myOverlay").style.display = "block";
-}
- 
-function w3_close() {
-    document.getElementById("mySidebar").style.display = "none";
-    document.getElementById("myOverlay").style.display = "none";
-}
-// Used to toggle the menu on smaller screens when clicking on the menu button
-function openNav() {
-    var x = document.getElementById("navDemo");
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-    } else { 
-        x.className = x.className.replace(" w3-show", "");
-    }
-}
-</script>
+
+
+    <script>
+        // Script to open and close sidebar
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+            document.getElementById("myOverlay").style.display = "block";
+        }
+
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+            document.getElementById("myOverlay").style.display = "none";
+        }
+        // Used to toggle the menu on smaller screens when clicking on the menu button
+        function openNav() {
+            var x = document.getElementById("navDemo");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+    </script>
 
 </body>
+
 </html>

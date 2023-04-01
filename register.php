@@ -22,7 +22,7 @@ $result = $mysqli->query("SELECT * FROM users WHERE email='$email'") or die($mys
 if ($result->num_rows > 0) {
 
     $_SESSION['message'] = 'User with this email already exists!';
-    header("location: error.php");
+    require "error.php";
 } else { // Email doesn't already exist in a database, proceed...
 
     // active is 0 by DEFAULT (no need to include it here)
@@ -49,21 +49,31 @@ if ($result->num_rows > 0) {
 
         Please click this link to activate your account:
 
-        http://http://papyrus.tasinshafileon.com/verify.php?email=' . $email . '&hash=' . $hash;
+        '.url().'/verify.php?email=' . $email . '&hash=' . $hash;
 
         // Always set content-type when sending HTML email
         $headers = "MIME-Version: 1.0" . "\r\n";
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
         // More headers
-        $headers .= 'From: <support@papyrus.com>' . "\r\n".
-                        'X-Mailer: PHP/' . phpversion();
+        $headers .= 'From: <support@papyrus.com>' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
 
         mail($to, $subject, $message_body, $headers);
 
-        header("location: profile.php");
+        require "profile.php";
     } else {
         $_SESSION['message'] = 'Registration failed!';
-        header("location: error.php");
+        require "error.php";
     }
+}
+
+function url()
+{
+    return sprintf(
+        "%s://%s%s",
+        isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http',
+        $_SERVER['SERVER_NAME'],
+        $_SERVER['REQUEST_URI']
+    );
 }

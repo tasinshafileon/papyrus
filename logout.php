@@ -2,14 +2,15 @@
 /* Log out process, unsets and destroys session variables */
 session_start();
 session_unset();
-session_destroy(); 
+session_destroy();
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="UTF-8">
-  <title>Error</title>
-  <?php include 'css/css.html'; ?>
+	<meta charset="UTF-8">
+	<title>Error</title>
+	<?php include 'css/css.html'; ?>
 </head>
 
 <meta charset="UTF-8">
@@ -19,35 +20,49 @@ session_destroy();
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css"">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600'  type='text/css'>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel=" stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 
 <style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+	body,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: "Lato", sans-serif
+	}
+
+	.w3-bar,
+	h1,
+	button {
+		font-family: "Montserrat", sans-serif
+	}
 </style>
 
 <body>
-    
-<!-- Navbar -->
-<div class="w3-top">
-  <div class="w3-bar w3-black w3-justify">
-    <p align="center"><img src="img/logo2-white.png" alt="PAPYRUS" height="70" width="90"></p>
-  </div>
 
-  <!-- Navbar on small screens -->
-  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-    <p align="center" style="font-size: 30px"><b>PAPYRUS</b></p>
-  </div>
-</div>
+	<!-- Navbar -->
+	<div class="w3-top">
+		<div class="w3-bar w3-black w3-justify">
+			<p align="center"><img src="img/logo2-white.png" alt="PAPYRUS" height="70" width="90"></p>
+		</div>
 
-<div class="form" style=" color: white; text-align: center">
-          <h1>Thanks for stopping by</h1>
-              
-          <p><?= 'You have been logged out!'; ?></p>
-          
-          <a href="index.php"><button class="button button-block"/>Home</button></a>
+		<!-- Navbar on small screens -->
+		<div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+			<p align="center" style="font-size: 30px"><b>PAPYRUS</b></p>
+		</div>
+	</div>
 
-    </div>
+	<div class="form" style=" color: white; text-align: center">
+		<h1>Thanks for stopping by</h1>
+
+		<p><?= 'You have been logged out!'; ?></p>
+
+		<a href="index.php"><button class="button button-block" />Home</button></a>
+
+	</div>
 </body>
+
 </html>
