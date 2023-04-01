@@ -100,7 +100,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `hash`, `active`) VALUES
-(1, 'Papyrus', 'User', 'papyrususer@gmail.com', '$2y$10$NLDM4Sb38Zi8Zoc3j7iAV.vsABMipLR1D4XZcu4DWQ1E3GRLMAt1K', 'e0ec453e28e061cc58ac43f91dc2f3f0', 1),
+(1, 'Papyrus', 'User', 'papyrususer@gmail.com', '$2y$10$NLDM4Sb38Zi8Zoc3j7iAV.vsABMipLR1D4XZcu4DWQ1E3GRLMAt1K', 'e0ec453e28e061cc58ac43f91dc2f3f0', 1);
 
 -- --------------------------------------------------------
 

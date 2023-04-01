@@ -41,7 +41,7 @@ if ($result->num_rows > 0) {
 
         // Send registration confirmation link (verify.php)
         $to      = $email;
-        $subject = 'Account Verification ( clevertechie.com )';
+        $subject = 'Account Verification ( papyrus.tasinshafileon.com )';
         $message_body = '
         Hello ' . $first_name . ',
 
@@ -49,7 +49,7 @@ if ($result->num_rows > 0) {
 
         Please click this link to activate your account:
 
-        http://localhost/login-system/verify.php?email=' . $email . '&hash=' . $hash;
+        http://http://papyrus.tasinshafileon.com/verify.php?email=' . $email . '&hash=' . $hash;
 
         // Always set content-type when sending HTML email
         $headers = "MIME-Version: 1.0" . "\r\n";
