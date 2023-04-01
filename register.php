@@ -49,7 +49,7 @@ if ($result->num_rows > 0) {
 
         Please click this link to activate your account:
 
-        '.url().'/verify.php?email=' . $email . '&hash=' . $hash;
+        ' . url() . '/verify.php?email=' . $email . '&hash=' . $hash;
 
         // Always set content-type when sending HTML email
         $headers = "MIME-Version: 1.0" . "\r\n";
@@ -71,9 +71,8 @@ if ($result->num_rows > 0) {
 function url()
 {
     return sprintf(
-        "%s://%s%s",
+        "%s://%s",
         isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http',
-        $_SERVER['SERVER_NAME'],
-        $_SERVER['REQUEST_URI']
+        $_SERVER['SERVER_NAME']
     );
 }

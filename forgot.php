@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		// Send registration confirmation link (reset.php)
 		$to      = $email;
-		$subject = 'Password Reset Link ( clevertechie.com )';
+		$subject = 'Password Reset Link ( papyrus.tasinshafileon.com )';
 		$message_body = '
         Hello ' . $first_name . ',
 
@@ -36,7 +36,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         '.url().'/reset.php?email=' . $email . '&hash=' . $hash;
 
-		mail($to, $subject, $message_body);
+        // Always set content-type when sending HTML email
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+        // More headers
+        $headers .= 'From: <support@papyrus.com>' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+		mail($to, $subject, $message_body, $headers);
 
 		require "success.php";
 	}
@@ -45,12 +53,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 function url()
 {
 	return sprintf(
-		"%s://%s%s",
+		"%s://%s",
 		isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http',
-		$_SERVER['SERVER_NAME'],
-		$_SERVER['REQUEST_URI']
+		$_SERVER['SERVER_NAME']
 	);
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,7 +73,7 @@ function url()
 <link rel="stylesheet" href="css/w3.css">
 <link rel="stylesheet" href="css/normalize.min.css">
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css"">
+<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600'  type='text/css'>
 <link rel=" stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
